@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 import random
 number = random.randint(-10000, 10000)
-last_digit = abs(number) % 10
+a = abs(number) % 10
 if number < 0:
-    a = -last_digit
+    a = -a
 if a > 5:
     print(f"Last digit of {number} is {a} and is greater than 5")
 elif a == 0:
