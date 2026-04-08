@@ -1,8 +1,9 @@
-#!/usr/bin/python3
-def islower(c):
-    """Return True if character c is lowercase, False otherwise."""
-    return ord('a') <= ord(c) <= ord('z')
+#!/usr/bin/env python3
 
-# Test nümunələri
-for c in ['a', 'H', '4', '!', 'g']:
-    print("Correct output - case '{}'".format(c))
+def islower(c):
+    # 'a' hərfinin ASCII kodu 97, 'z' hərfinin kodu isə 122-dir.
+    # ord(c) funksiyası simvolun rəqəm qarşılığını verir.
+    if ord(c) >= 97 and ord(c) <= 122:
+        return True
+    else:
+        return False
