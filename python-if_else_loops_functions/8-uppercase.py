@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 def uppercase(str):
     for char in str:
         # Simvolun kiçik hərf olub-olmadığını ASCII kodu ilə yoxlayırıq
