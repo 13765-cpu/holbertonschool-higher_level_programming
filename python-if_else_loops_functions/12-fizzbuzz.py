@@ -9,6 +9,4 @@ def fizzbuzz():
             print("Buzz", end="")
         else:
             print("{}".format(i), end="")
-        
-        # Hər elementdən sonra boşluq qoymaq üçün (sonda da daxil olmaqla)
         print(" ", end="")
