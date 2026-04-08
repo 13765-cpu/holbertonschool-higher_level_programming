@@ -1,5 +1,4 @@
-#!/usr/bin/env python3
-
+#!/usr/bin/python3
 def islower(c):
     # 'a' hərfinin ASCII kodu 97, 'z' hərfinin kodu isə 122-dir.
     # ord(c) funksiyası simvolun rəqəm qarşılığını verir.
