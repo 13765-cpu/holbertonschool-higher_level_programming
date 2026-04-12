@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-"""Kvadratı təyin edən modul.
+"""Square klassını təyin edən modul."""
+
+
 class Square:
-    """Kvadratı təmsil edən boş klass
+    """Kvadratı təmsil edən boş bir klass."""
     pass
