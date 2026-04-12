@@ -1,14 +1,8 @@
 #!/usr/bin/python3
-"""Square klassını təyin edən modul."""
-
-
+"""Kvadrat modulu"""
 class Square:
-    """Kvadratı təmsil edən klass."""
-
+    """Kvadratı təyin edir"""
     def __init__(self, size):
-        """Kvadratı müəyyən bir ölçü ilə yaradır.
-
-        Args:
-            size (int): Kvadratın tərəfinin 
-        """
+        """Başlanğıc dəyərlər"""
         self.__size = size
+# <--- Burada mütləq bir boş sətir olmalıdır
