@@ -6,23 +6,23 @@ class Square:
     """Kvadratı təmsil edən klass."""
 
     def __init__(self, size=0, position=(0, 0)):
-        """Yeni kvadrat yaradır.
+        """Yeni kvadrat obyekti yaradır.
 
         Args:
             size (int): Kvadratın ölçüsü.
-            position (tuple): Kvadratın koordinatları.
+            position (tuple): Kvadratın koordinatları (x, y).
         """
         self.size = size
         self.position = position
 
     @property
     def size(self):
-        """Ölçünü əldə etmək üçün getter."""
+        """Size dəyərini qaytarır."""
         return self.__size
 
     @size.setter
     def size(self, value):
-        """Ölçünü təyin etmək üçün setter."""
+        """Size dəyərini yoxlayır və təyin edir."""
         if not isinstance(value, int):
             raise TypeError("size must be an integer")
         if value < 0:
@@ -31,12 +31,12 @@ class Square:
 
     @property
     def position(self):
-        """Mövqeyi əldə etmək üçün getter."""
+        """Position dəyərini qaytarır."""
         return self.__position
 
-    @size.setter
+    @position.setter
     def position(self, value):
-        """Mövqeyi təyin etmək üçün setter."""
+        """Position dəyərini yoxlayır və təyin edir."""
         if (not isinstance(value, tuple) or len(value) != 2 or
                 not all(isinstance(num, int) for num in value) or
                 not all(num >= 0 for num in value)):
@@ -44,11 +44,11 @@ class Square:
         self.__position = value
 
     def area(self):
-        """Kvadratın sahəsini hesablayır."""
+        """Kvadratın sahəsini qaytarır."""
         return self.__size * self.__size
 
     def my_print(self):
-        """Kvadratı '#' simvolu və mövqe boşluqları ilə çap edir."""
+        """Kvadratı '#' simvolu ilə, mövqeyi nəzərə alaraq çap edir."""
         if self.__size == 0:
             print("")
             return
@@ -57,7 +57,7 @@ class Square:
         for _ in range(self.__position[1]):
             print("")
 
-        # Kvadratın sətirlərini çap etmək
+        # Kvadratın hər bir sətri
         for _ in range(self.__size):
-            # Soldan buraxılan boşluqlar (position[0]) + kvadratın özü
+            # Soldan boşluq (position[0]) + kvadratın özü (#)
             print(" " * self.__position[0] + "#" * self.__size)
