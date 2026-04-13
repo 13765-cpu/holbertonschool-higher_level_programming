@@ -4,15 +4,17 @@ def safe_print_list_integers(my_list=[], x=0):
     count = 0
     for i in range(x):
         try:
-            # {:d} formatı həm rəqəmi çap edir, həm də tipini yoxlayır
-            # my_list[i] isə indeksi yoxlayır
-            print("{:d}".format(my_list[i]), end="")
-            count += 1
-        except (ValueError, TypeError):
-            # Əgər element rəqəm deyilsə, səssizcə keçirik
-            continue
+            # 1. İlk öncə elementin mövcudluğunu və tipini eyni anda yoxlayırıq
+            value = my_list[i]
+            try:
+                print("{:d}".format(value), end="")
+                count += 1
+            except (ValueError, TypeError):
+                # Integer deyilsə səssizcə keçirik
+                continue
         except IndexError:
-            # Əgər siyahı bitdisə, dövrü dayandırırıq (Traceback-in qarşısını alırıq)
+            # Siyahı bitəndə IndexError buraya düşür və dövrü dayandırırıq
             break
-    print("")  # Sonda yeni sətir mütləqdir
+            
+    print("") # Yeni sətir
     return count
