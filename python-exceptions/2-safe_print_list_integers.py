@@ -10,7 +10,7 @@ def safe_print_list_integers(my_list=[], x=0):
             count += 1
         except (ValueError, TypeError):
             # Əgər element rəqəm deyilsə, səssizcə keçirik
-            pass
+            continue
         except IndexError:
             # Əgər siyahı bitdisə, dövrü dayandırırıq (Traceback-in qarşısını alırıq)
             break
