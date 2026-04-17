@@ -2,9 +2,10 @@
 import sys
 import urllib.request
 
-url = sys.argv[1]
+if __name__ == "__main__":
+    url = sys.argv[1]
 
-req = urllib.request.Request(url, headers={"cfclearance": "true"})
+    req = urllib.request.Request(url, headers={"cfclearance": "true"})
 
-with urllib.request.urlopen(req) as response:
-    print(response.headers.get("X-Request-Id"))
+    with urllib.request.urlopen(req) as response:
+        print(response.headers.get("X-Request-Id"))
