@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+"""Sends a POST request with an email and displays the response body."""
+
 import sys
 import urllib.request
 import urllib.parse
@@ -9,8 +11,7 @@ if __name__ == "__main__":
 
     data = urllib.parse.urlencode({"email": email}).encode("utf-8")
 
-    req = urllib.request.Request(url, data=data, method="POST")
+    req = urllib.request.Request(url, data=data)
 
     with urllib.request.urlopen(req) as response:
-        body = response.read().decode("utf-8")
-        print(body)
+        print(response.read().decode("utf-8"))
