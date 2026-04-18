@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+"""Script that fetches X-Request-Id from a URL response header"""
+
 import sys
 import urllib.request
 
