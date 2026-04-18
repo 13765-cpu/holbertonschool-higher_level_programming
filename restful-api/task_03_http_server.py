@@ -27,13 +27,9 @@ class SimpleAPIHandler(BaseHTTPRequestHandler):
             json_response = json.dumps(sample_data)
             self.wfile.write(json_response.encode('utf-8'))
 
-        # 4. Error handling (404) - DÜZƏLİŞ BURADADIR
+        # 4. Error handling (404) - ƏN ETİBARLI ÜSUL
         else:
-            self.send_response(404)
-            self.send_header('Content-type', 'text/plain')
-            self.end_headers()
-            # Test çox vaxt dəqiq bu mətni gözləyir
-            self.wfile.write(b"Not Found")
+            self.send_error(404, "Not Found")
 
 # Serveri başlatmaq üçün hissə
 def run(port=8000):
