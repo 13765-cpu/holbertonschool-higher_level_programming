@@ -1,36 +1,41 @@
 import os
 
 def generate_invitations(template, attendees):
-    # 1. Giriş tiplərinin yoxlanılması (Input Types Check)
+    # 1. Giriş tiplərinin yoxlanılması
     if not isinstance(template, str):
-        print("Error: template must be a string.")
+        # Şərtdə "log an error message" deyilir, tipini də qeyd etmək olar
+        print(f"Error: Invalid input type for template. Expected str, got {type(template).__name__}")
         return
     if not isinstance(attendees, list) or not all(isinstance(a, dict) for a in attendees):
-        print("Error: attendees must be a list of dictionaries.")
+        print(f"Error: Invalid input type for attendees. Expected list of dictionaries, got {type(attendees).__name__}")
         return
 
-    # 2. Boşluq yoxlanılması (Handle Empty Inputs)
-    if not template.strip():
+    # 2. Boşluq yoxlanılması (Şərtdəki dəqiq mesajlar)
+    if not template:
         print("Template is empty, no output files generated.")
         return
     if not attendees:
         print("No data provided, no output files generated.")
         return
 
-    # 3. Hər bir iştirakçı üçün emal (Process Each Attendee)
+    # 3. Proses
     for index, person in enumerate(attendees, start=1):
         content = template
         
-        for key in ["name", "event_title", "event_date", "event_location"]:
-            # Sənin yazdığın məntiq bura daxil olur:
+        # Əvəz olunacaq açarlar
+        placeholders = ["name", "event_title", "event_date", "event_location"]
+        
+        for key in placeholders:
+            # Dəyəri götür və None olub-olmadığını yoxla
             value = person.get(key)
             if value is None:
                 value = "N/A"
             
-            placeholder = f"{{{{{key}}}}}" # Bu {{key}} deməkdir
-            content = content.replace(placeholder, str(value))
+            # Placeholder-i dəyiş
+            target = "{{" + key + "}}"
+            content = content.replace(target, str(value))
         
-        # 4. Fayla yazmaq (Generate Output Files)
+        # 4. Fayla yazmaq
         filename = f"output_{index}.txt"
         try:
             with open(filename, "w") as f:
