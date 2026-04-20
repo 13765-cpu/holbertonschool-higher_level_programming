@@ -5,12 +5,27 @@ from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
-# SQL-dən məlumatları oxumaq üçün funksiya
+# --- OXUMA FUNKSİYALARI ---
+def read_json():
+    try:
+        with open('products.json', 'r') as f:
+            return json.load(f)
+    except: return []
+
+def read_csv():
+    products = []
+    try:
+        with open('products.csv', 'r') as f:
+            reader = csv.DictReader(f)
+            for row in reader:
+                products.append(row)
+        return products
+    except: return []
+
 def read_sql():
     products = []
     try:
         conn = sqlite3.connect('products.db')
-        # Bu sətir nəticəni lüğət (dict) formatında almağa kömək edir
         conn.row_factory = sqlite3.Row 
         cursor = conn.cursor()
         cursor.execute('SELECT * FROM Products')
@@ -20,22 +35,19 @@ def read_sql():
         conn.close()
         return products
     except sqlite3.Error:
-        return None # Baza xətası halında
+        return None
 
+# --- ROUTE ---
 @app.route('/products')
 def display_products():
     source = request.args.get('source')
     
-    # 1. Mənbə yoxlanışı
     if source not in ['json', 'csv', 'sql']:
         return render_template('product_display.html', error="Wrong source")
     
-    # 2. Mənbəyə görə datanı oxu
     if source == 'json':
-        # Əvvəlki taskdakı read_json funksiyanı bura əlavə et
-        data = read_json() 
+        data = read_json()
     elif source == 'csv':
-        # Əvvəlki taskdakı read_csv funksiyanı bura əlavə et
         data = read_csv()
     elif source == 'sql':
         data = read_sql()
@@ -43,3 +55,6 @@ def display_products():
             return render_template('product_display.html', error="Database error")
 
     return render_template('product_display.html', products=data)
+
+if __name__ == '__main__':
+    app.run(debug=True, port=5000)
